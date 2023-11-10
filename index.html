@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+
+		<meta charset="utf-8">
+		<title>Analizador de lesiones en la piel</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Online image analyzer of the three most likely diagnoses for a skin lesion.">
+
+
+		<!--Código para evitar que el navegador almacene en caché la página-->
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+		<meta http-equiv="Pragma" content="no-cache"/>
+		<meta http-equiv="Expires" content="0"/>
+		<title>Instituto de Neurociencias</title>
+		<link href="css/inicio.css" rel="stylesheet" type="text/css" />
+		<link href="css/slider.css" rel="stylesheet" type="text/css" />
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+
+
+
+
+
+		<!--Hojas de estilo CSS-->
+		<link rel="stylesheet" href="css/w3.css">
+
+		<!--Link a los iconos de Font Awesome-->
+		<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.4.2/css/all.css' integrity='sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns' crossorigin='anonymous'>
+
+		<!--Enlace a fuentes de google fonts-->
+		<link href="https://fonts.googleapis.com/css?family=Oswald:300" rel="stylesheet">
+
+
+		<style>
+			html,body,h2,h3,h4 {font-family: Helvetica, sans-serif}
+		</style>
+
+
+	</head>
+
+
+	<body class="front not-logged-in page-node no-sidebars i18n-en front not-logged-in cuerpo_con_promo cuerpo_con_menu page-node-1">
+
+		<div id="sticky_footer-body">
+
+
+
+
+			<!-- w3-content define un contenedor para contenido centrado de tamaño fijo,
+			y se envuelve alrededor de todo el contenido de la página. -->
+			<div class="w3-content card" style="max-width:700px">
+
+
+
+				<!-- 1. HOME PAGE TAB -->
+				<div class="tabbed w3-animate-opacity w3-white" id="home">
+
+
+
+					<!-- Header -->
+
+					<div class="w3-center">
+
+						<h3 class="space-letters w3-blue">
+							<b>Analizador de lesiones en la piel</b>
+						</h3>
+
+					</div>
+
+
+					<!-- Button, cree una etiqueta button con propiedades de cambio de color una vez es seleccionado despliegue la 
+					apertura de camara o realice un llamado al método simulateClick()-->
+					<div id="btnn" class="w3-center bottom-padding" style="margin:20px">
+						<button class="w3-btn w3-blue w3-round w3-margin-bottom adjust-spacing w3-hover-black btn-font w3-padding w3-space-letters w3-card-4" onclick="setTimeout(simulateClick.bind(null, 'image-selector'), 200)"><i class='fas fa-camera w3-padding-right' style='font-size:15px'></i><b>Subir imagen y predecir</b></button>
+					</div> 
+
+					<!-- Imagen de portada -->
+					<!-- Esta imagen será reemplazada una vez que se ejecute el código js. -->
+					<div class="w3-center" style="margin-bottom:40px">
+						<div align="center">
+							<img id="selected-image" class="adjust-image" src="assets/blank.jpg" alt=""> 
+						</div>
+					</div> 
+
+
+
+					<div class="w3-center" style="margin:20px">
+
+						<h5 class='new-font'>............................</h5>
+						<ol class='w3-left-align' id='prediction-list'></ol>
+
+					</div>
+
+
+
+				</div><!--Final del Home Page, documente los resultados obtenidos del modelo, a saber, Exactitud, Presición y Sencibilidad, dando créditos a la base de datos trabajada-->
+
+
+				<div class='w3-padding'>
+				
+					<table>
+						<tr>
+							<th colspan="5">INTEGRANTES: Liderman Diaz</th>
+						</tr>
+						<tr>
+							<th></th>
+							<th>precision</th>
+							<th>recall</th>
+							<th>f1-score</th>
+							<th>support</th>
+						</tr>
+						<tr>
+							<td>akiec</td>
+							<td>1.00</td>
+							<td>0.06</td>
+							<td>0.12</td>
+							<td>16</td>
+						</tr>
+						<tr>
+							<td>bcc</td>
+							<td>0.54</td>
+							<td>0.68</td>
+							<td>0.60</td>
+							<td>19</td>
+						</tr>
+						<tr>
+							<td>bkl</td>
+							<td>0.38</td>
+							<td>0.31</td>
+							<td>0.34</td>
+							<td>55</td>
+						</tr>
+						<tr>
+							<td>df</td>
+							<td>1.00</td>
+							<td>0.40</td>
+							<td>0.57</td>
+							<td>5</td>
+						</tr>
+						<tr>
+							<td>mel</td>
+							<td>0.06</td>
+							<td>0.82</td>
+							<td>0.12</td>
+							<td>28</td>
+						</tr>
+						<tr>
+							<td>nv</td>
+							<td>0.98</td>
+							<td>0.38</td>
+							<td>0.54</td>
+							<td>496</td>
+						</tr>
+						<tr>
+							<td>vasc</td>
+							<td>1.00</td>
+							<td>0.89</td>
+							<td>0.94</td>
+							<td>9</td>
+						</tr>
+						<tr>
+							<td>accuracy</td>
+							<td></td>
+							<td></td>
+							<td>0.40</td>
+							<td>628</td>
+						</tr>
+						<tr>
+							<td>macro avg</td>
+							<td>0.71</td>
+							<td>0.51</td>
+							<td>0.46</td>
+							<td>628</td>
+						</tr>
+						<tr>
+							<td>weighted avg</td>
+							<td>0.88</td>
+							<td>0.40</td>
+							<td>0.50</td>
+							<td>628</td>
+						</tr>
+						
+					</table>
+				
+				</div>
+				
+
+				<!-- Simulamos clics en estos dos botones de carga inicial. -->
+				<div style="visibility:hidden">
+					<button id='predict-button'>Predict</button>
+					<input id="image-selector" type="file">
+				</div>
+				<!--===================================-->
+
+
+				<!-- cargando jQuery -->
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+
+				</script>
+				<!-- cargando TensorFlow.js -->
+
+				<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.13.3/dist/tf.min.js"> 
+				</script>
+
+				<!-- NOTA:
+				Cambie el nombre del archivo predict.js (cambie el número) cada vez que modifique el archivo predict.js.
+				Esto forzará al navegador a cargar el predict.js más reciente y no cargar
+				el archivo predict.js que está en la caché del usuario.
+				Hay una solución en stackoverflow que dice que hay que añadir una versión al archivo js. 
+				Pero podría ser que algunos navegadores puedan ignorar la versión. Por lo tanto creo que
+				es más seguro cambiar el nombre del archivo js.-->
+				<script src="jscript/target_classes.js"></script>
+				<script src="jscript/predict100.js"></script> 
+
+
+
+			</div> <!-- w3-content -->
+		</div>
+	</body>
+</html>
+
